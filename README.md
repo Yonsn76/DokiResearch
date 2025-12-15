@@ -232,8 +232,41 @@ cp .env.example .env
 
 ## Uso
 
+### Modo Chat Conversacional (Recomendado)
+
 ```bash
-# Ejecutar investigacion
+# Iniciar chat interactivo con el Supervisor LLM
+npm run chat
+```
+
+En este modo puedes:
+- **Conversar** naturalmente con DokiResearch
+- **Pedir investigaciones** cuando lo necesites
+- **Continuar la conversación** después de cada investigación
+- **Revisar historial** de investigaciones completadas
+
+**Comandos del chat:**
+| Comando | Descripcion |
+|---------|-------------|
+| `/help` | Mostrar ayuda |
+| `/clear` | Limpiar historial de conversacion |
+| `/reset` | Reiniciar completamente |
+| `/history` | Ver investigaciones completadas |
+| `/exit` | Salir del chat |
+
+**Ejemplos de conversacion:**
+```
+> Hola, ¿que puedes hacer?
+> Investiga sobre inteligencia artificial en 2024
+> ¿Que encontraste sobre el tema?
+> Profundiza en machine learning
+> Gracias, ahora investiga sobre cambio climatico
+```
+
+### Modo Directo (Una sola investigacion)
+
+```bash
+# Ejecutar investigacion directa
 npm run dev "Tu consulta de investigacion"
 
 # Ejemplos
@@ -249,7 +282,11 @@ npm run dev "Impacto economico del cambio climatico"
 ```
 research-multi-agent/
 ├── src/
-│   ├── index.ts                 # Punto de entrada CLI
+│   ├── index.ts                 # CLI modo directo
+│   ├── chat.ts                  # CLI modo conversacional
+│   ├── server.ts                # API server (opcional)
+│   ├── supervisor/
+│   │   └── supervisor-agent.ts  # Supervisor LLM conversacional
 │   ├── agents/
 │   │   └── worker-agents.ts     # Agentes especializados
 │   ├── graph/
@@ -266,9 +303,11 @@ research-multi-agent/
 
 ## Patrones Implementados
 
-1. **Supervisor Pattern** - Agente central que coordina el flujo
-2. **Worker Agents** - Agentes especializados independientes
-3. **StateGraph** - Grafo de estados para orquestacion
-4. **Chunking** - Division de resultados grandes para evitar limites de tokens
-5. **Tool Isolation** - Herramientas aisladas por agente
+1. **Conversational Supervisor** - Supervisor LLM que puede conversar y asignar tareas
+2. **Supervisor Pattern** - Agente central que coordina el flujo de investigacion
+3. **Worker Agents** - Agentes especializados independientes
+4. **StateGraph** - Grafo de estados para orquestacion
+5. **Chunking** - Division de resultados grandes para evitar limites de tokens
+6. **Tool Isolation** - Herramientas aisladas por agente
+7. **Conversation Memory** - Memoria de conversacion y investigaciones previas
 

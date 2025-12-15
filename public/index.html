@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DokiResearch - Sistema Multi-Agente</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🔬 DokiResearch</h1>
+      <p class="subtitle">Sistema Multi-Agente de Investigación</p>
+    </header>
+
+    <main>
+      <div class="search-box">
+        <input 
+          type="text" 
+          id="query" 
+          placeholder="¿Qué quieres investigar?"
+          autocomplete="off"
+        >
+        <button id="searchBtn" onclick="research()">
+          <span class="btn-text">Investigar</span>
+          <span class="btn-loading" style="display:none">⏳</span>
+        </button>
+      </div>
+
+      <div class="agents-status" id="agentsStatus" style="display:none">
+        <div class="agent" data-agent="supervisor">
+          <span class="icon">🎯</span>
+          <span class="name">Supervisor</span>
+          <span class="status"></span>
+        </div>
+        <div class="agent" data-agent="buscador">
+          <span class="icon">🔍</span>
+          <span class="name">Buscador</span>
+          <span class="status"></span>
+        </div>
+        <div class="agent" data-agent="lector">
+          <span class="icon">📖</span>
+          <span class="name">Lector</span>
+          <span class="status"></span>
+        </div>
+        <div class="agent" data-agent="sintetizador">
+          <span class="icon">🧩</span>
+          <span class="name">Sintetizador</span>
+          <span class="status"></span>
+        </div>
+        <div class="agent" data-agent="escritor">
+          <span class="icon">✍️</span>
+          <span class="name">Escritor</span>
+          <span class="status"></span>
+        </div>
+      </div>
+
+      <div class="results" id="results"></div>
+    </main>
+
+    <footer>
+      <p>LangGraph + GitHub Models + Perplexity AI</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
